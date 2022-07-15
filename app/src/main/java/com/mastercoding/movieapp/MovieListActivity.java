@@ -1,6 +1,10 @@
  package com.mastercoding.movieapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.HasDefaultViewModelProviderFactory;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +16,7 @@ import com.mastercoding.movieapp.Utils.Credentials;
 import com.mastercoding.movieapp.Utils.MovieApi;
 import com.mastercoding.movieapp.request.Servicey;
 import com.mastercoding.movieapp.response.MovieSearchResponse;
+import com.mastercoding.movieapp.viewModels.MovieListViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +33,8 @@ import retrofit2.http.Query;
 
 
     Button btn;
+    // ViewModel
+     private MovieListViewModel movieListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +42,22 @@ import retrofit2.http.Query;
         setContentView(R.layout.activity_main);
 
         btn = findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GetRetrofitResponseAccordingToID();
-                
-            }
 
-         
-        });
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
+
     }
 
+    // observing any data change
+     private void ObserveAnychange(){
+        movieListViewModel.getMovies().observe(this, new Observer<List<MovieModel>>() {
+            @Override
+            public void onChanged(List<MovieModel> movieModels) {
+
+                // Observing for nay data change
+
+            }
+        });
+     }
      private void GetRetrofitResponse() {
 
       MovieApi movieApi = Servicey.getMovieApi();
@@ -120,6 +132,7 @@ import retrofit2.http.Query;
         });
     }
 
- }
+     }
+
 
 
