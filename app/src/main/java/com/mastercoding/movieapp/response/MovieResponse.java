@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import com.mastercoding.movieapp.Models.MovieModel;
 
 // This class is for single movie request
-public class MovieResponse {
+
+    public class MovieResponse {
 
     // 1- Finding the Movie Object
     @SerializedName("results")
