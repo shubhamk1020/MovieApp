@@ -1,9 +1,9 @@
 package com.mastercoding.movieapp.viewModels;
 
-import android.graphics.Movie;
+
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+
 import androidx.lifecycle.ViewModel;
 
 import com.mastercoding.movieapp.Models.MovieModel;
